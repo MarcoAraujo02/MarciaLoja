@@ -127,7 +127,7 @@
     pointer-events:none}
   .hero::after{content:"";position:absolute;left:-18%;bottom:-42%;width:52vw;height:52vw;border-radius:50%;
     background:radial-gradient(circle at center,rgba(127,174,220,.22),transparent 65%);pointer-events:none}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,72px);align-items:end;position:relative;z-index:2}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,72px);align-items:center;position:relative;z-index:2}
   .hero-copy{padding-bottom:clamp(64px,8vw,96px)}
   .hero-kicker{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:500;letter-spacing:.24em;
     text-transform:uppercase;color:var(--sky);margin-bottom:26px}
@@ -143,10 +143,10 @@
 
   /* imagem em arco — elemento assinatura */
   .arch{border-radius:var(--arch) var(--arch) var(--r) var(--r);overflow:hidden;position:relative;isolation:isolate}
-  .hero-figure{position:relative;align-self:end}
+  .hero-figure{position:relative;align-self:end;padding-bottom:clamp(64px,8vw,96px)}
   .hero-figure .arch{box-shadow:var(--shadow-lg);border:6px solid rgba(255,255,255,.14)}
-  .hero-figure .arch img{width:100%;height:clamp(400px,46vw,580px);object-fit:cover}
-  .hero-figure .note{position:absolute;left:-22px;bottom:34px;background:#fff;color:var(--ink);border-radius:14px;
+  .hero-figure .arch img{width:100%;height:clamp(400px,44vw,540px);object-fit:cover;object-position:center 38%}
+  .hero-figure .note{position:absolute;left:-16px;bottom:calc(clamp(64px,8vw,96px) + 30px);background:#fff;color:var(--ink);border-radius:14px;
     padding:14px 18px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:12px;z-index:3}
   .hero-figure .note .num{font-family:var(--font-display);font-size:1.7rem;color:var(--blue);line-height:1}
   .hero-figure .note small{font-size:.72rem;color:var(--ink-soft);max-width:118px;line-height:1.35;display:block}
@@ -301,6 +301,7 @@
     opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
   .mobile-menu.open{opacity:1;pointer-events:auto}
   .mobile-menu a{font-family:var(--font-display);font-size:1.9rem;color:#fff;padding:10px 0}
+  .mobile-menu a.btn{font-family:var(--font-sans);font-size:.95rem;color:var(--navy-800);padding:14px 30px}
   .mobile-menu .btn{margin-top:20px}
   .mclose{position:absolute;top:22px;right:22px;background:none;border:0;cursor:pointer;color:#fff;padding:10px}
   .mclose svg{width:30px;height:30px}
@@ -338,8 +339,8 @@
     .hero-meta div span{font-size:.7rem}
     .hero-figure{padding-bottom:44px}
     .hero-figure .arch{border-width:4px}
-    .hero-figure .arch img{height:min(96vw,380px)}
-    .hero-figure .note{left:10px;bottom:22px;padding:11px 14px}
+    .hero-figure .arch img{height:min(96vw,380px);object-position:center 38%}
+    .hero-figure .note{left:10px;bottom:calc(44px + 18px);padding:11px 14px}
     .hero-figure .note .num{font-size:1.3rem}
     .marquee span{font-size:.82rem;padding:0 18px;gap:18px}
     .col-grid{grid-template-columns:1fr}
