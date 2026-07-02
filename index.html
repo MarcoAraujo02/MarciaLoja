@@ -306,9 +306,14 @@
   .mclose svg{width:30px;height:30px}
 
   @media(max-width:980px){
-    .hero-grid{grid-template-columns:1fr;gap:44px;align-items:start}
+    .hero{padding-top:clamp(108px,14vw,140px)}
+    .hero-grid{grid-template-columns:1fr;gap:36px;align-items:start}
     .hero-copy{padding-bottom:0}
-    .hero-figure{max-width:520px;margin:0 auto;padding-bottom:56px}
+    .hero-figure{max-width:520px;margin:0 auto;padding-bottom:52px;width:100%}
+    .hero::before{right:-30%;top:-8%;width:100vw;height:100vw;
+      background:repeating-radial-gradient(circle at center,rgba(255,255,255,.07) 0 1.5px,transparent 1.5px 44px)}
+    .hero::after{left:-35%;bottom:-18%;width:110vw;height:110vw;
+      background:radial-gradient(circle at center,rgba(127,174,220,.3),transparent 62%)}
     .col-grid{grid-template-columns:repeat(2,1fr)}
     .col-grid .ccard:nth-child(2),.col-grid .ccard:nth-child(5){transform:none}
     .feat-grid{grid-template-columns:repeat(2,1fr)}
@@ -320,13 +325,29 @@
   @media(max-width:640px){
     nav.links,.nav-cta{display:none}
     .burger{display:block}
-    :root{--arch:170px}
+    :root{--arch:150px}
+    .hero{padding-top:100px}
+    .hero-grid{gap:30px}
+    .hero-kicker{margin-bottom:18px;font-size:.68rem}
+    .hero-copy h1{font-size:clamp(2.35rem,10.5vw,3rem)}
+    .hero-copy .lead{margin:18px 0 26px;font-size:.98rem}
+    .hero-actions{flex-direction:column;align-items:stretch}
+    .hero-actions .btn{width:100%}
+    .hero-meta{gap:14px 20px;margin-top:30px;padding-top:22px;justify-content:space-between}
+    .hero-meta div b{font-size:1.25rem}
+    .hero-meta div span{font-size:.7rem}
+    .hero-figure{padding-bottom:44px}
+    .hero-figure .arch{border-width:4px}
+    .hero-figure .arch img{height:min(96vw,380px)}
+    .hero-figure .note{left:10px;bottom:22px;padding:11px 14px}
+    .hero-figure .note .num{font-size:1.3rem}
+    .marquee span{font-size:.82rem;padding:0 18px;gap:18px}
     .col-grid{grid-template-columns:1fr}
     .ccard .arch img{height:320px}
     .feat-grid{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr}
-    .hero-figure .note{left:8px}
-    .about-fig .seal{right:-6px}
+    .about-fig .seal{right:-6px;width:96px;height:96px}
+    .about-fig .seal b{font-size:1.6rem}
   }
   @media(max-width:400px){.foot-grid{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){
