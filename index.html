@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Casa da Márcia — Louças, Porcelanas & Utilidades para a sua mesa</title>
-<meta name="description" content="Casa da Márcia: louças e porcelanas finas, jogos de chá, mesa posta, aparelhos de jantar, panelas e utilidades para o lar. Atendimento personalizado via WhatsApp." />
+<title>Casa da Márcia — Utilidades para Casa, Decoração & Espelhos</title>
+<meta name="description" content="Casa da Márcia: utilidades para casa e decoração — espelhos a pronta entrega com valor bom (e sempre em promoção com 10% ou 15% off), mesa posta, cozinha e muito mais. Atendimento personalizado via WhatsApp." />
 <meta name="theme-color" content="#0C2B4E" />
-<meta property="og:title" content="Casa da Márcia — Louças & Utilidades" />
-<meta property="og:description" content="A elegância que mora na sua mesa. Louças, porcelanas, mesa posta e utilidades com curadoria e atendimento próximo." />
+<meta property="og:title" content="Casa da Márcia — Utilidades para Casa & Decoração" />
+<meta property="og:description" content="Espelhos a pronta entrega com valor bom, decoração e utilidades para deixar o seu lar mais bonito. Atendimento próximo via WhatsApp." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -122,7 +122,7 @@
   /* ===== HERO (gradient) ===== */
   .hero{position:relative;background:var(--grad-hero);color:#fff;overflow:hidden;
     padding:clamp(130px,16vw,180px) 0 0}
-  /* textura de círculos concêntricos = pratos empilhados */
+  /* textura de círculos concêntricos */
   .hero::before{content:"";position:absolute;right:-14%;top:-30%;width:64vw;height:64vw;border-radius:50%;
     background:repeating-radial-gradient(circle at center,rgba(255,255,255,.05) 0 1.5px,transparent 1.5px 56px);
     pointer-events:none}
@@ -182,6 +182,31 @@
   .col-grid .ccard:nth-child(2){transform:translateY(28px)}
   .col-grid .ccard:nth-child(5){transform:translateY(28px)}
   .col-more{text-align:center;margin-top:clamp(52px,6vw,68px)}
+  .ccard .tag{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:2;background:var(--navy-800);color:#fff;
+    font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:7px 16px;border-radius:999px;
+    box-shadow:var(--shadow-sm);white-space:nowrap}
+
+  /* ===== ESPELHOS (destaque) ===== */
+  .mirrors{background:var(--grad-soft);overflow:hidden}
+  .mirror-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(40px,6vw,76px);align-items:center}
+  .mirror-copy h2{font-size:clamp(1.95rem,3.9vw,2.9rem);margin-bottom:20px}
+  .mirror-copy p{color:var(--ink-soft);font-size:.98rem}
+  .mirror-copy p+p{margin-top:15px}
+  .mirror-figs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.2vw,24px);align-items:start}
+  .mirror-figs figure{margin:0;position:relative}
+  .mirror-figs figure:nth-child(2){transform:translateY(40px)}
+  .mirror-figs .arch{box-shadow:var(--shadow-md);border:1px solid var(--line)}
+  .mirror-figs .arch img{width:100%;height:clamp(280px,30vw,400px);object-fit:cover}
+  .off-badge{position:absolute;top:-16px;right:-10px;z-index:3;width:78px;height:78px;border-radius:50%;
+    background:var(--navy-800);color:#fff;display:grid;place-items:center;text-align:center;line-height:1.05;
+    font-family:var(--font-display);box-shadow:var(--shadow-md);border:4px solid #fff;transform:rotate(8deg)}
+  .off-badge b{font-size:1.25rem;font-weight:400;display:block}
+  .off-badge small{font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;font-family:var(--font-sans);font-weight:600;color:var(--sky)}
+  .off-badge.alt{background:var(--blue)}
+  .mirror-pills{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 4px}
+  .mirror-pills span{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);
+    border-radius:999px;padding:9px 18px;font-size:.82rem;font-weight:500;color:var(--ink);box-shadow:var(--shadow-sm)}
+  .mirror-pills i{width:8px;height:8px;border-radius:50%;background:var(--blue);display:block}
 
   /* ===== DIFERENCIAIS (editorial, linhas finas) ===== */
   .features{background:var(--ice)}
@@ -219,7 +244,7 @@
   .promo::before{content:"";position:absolute;right:-10%;top:-60%;width:46vw;height:46vw;border-radius:50%;
     background:repeating-radial-gradient(circle at center,rgba(255,255,255,.06) 0 1.5px,transparent 1.5px 48px);pointer-events:none}
   .promo-in{position:relative;z-index:2;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px}
-  .promo h2{font-size:clamp(1.9rem,3.6vw,2.6rem);max-width:18ch;margin-bottom:8px}
+  .promo h2{font-size:clamp(1.9rem,3.6vw,2.6rem);max-width:20ch;margin-bottom:8px}
   .promo p{color:rgba(255,255,255,.84);max-width:46ch;font-size:.98rem}
 
   /* ===== DEPOIMENTOS ===== */
@@ -319,8 +344,9 @@
     .col-grid{grid-template-columns:repeat(2,1fr)}
     .col-grid .ccard:nth-child(2),.col-grid .ccard:nth-child(5){transform:none}
     .feat-grid{grid-template-columns:repeat(2,1fr)}
-    .about-grid,.contact-grid{grid-template-columns:1fr;gap:42px}
+    .about-grid,.contact-grid,.mirror-grid{grid-template-columns:1fr;gap:42px}
     .about-fig{margin:0 auto}
+    .mirror-figs{max-width:560px;margin:0 auto;width:100%}
     .test-grid{grid-template-columns:1fr}
     .foot-grid{grid-template-columns:1fr 1fr;gap:28px}
   }
@@ -350,6 +376,11 @@
     .foot-grid{grid-template-columns:1fr 1fr}
     .about-fig .seal{right:-6px;width:96px;height:96px}
     .about-fig .seal b{font-size:1.6rem}
+    .mirror-figs{gap:12px}
+    .mirror-figs figure:nth-child(2){transform:translateY(24px)}
+    .mirror-figs .arch img{height:min(64vw,300px)}
+    .off-badge{width:64px;height:64px;top:-12px;right:-6px}
+    .off-badge b{font-size:1rem}
   }
   @media(max-width:400px){.foot-grid{grid-template-columns:1fr}}
   @media(prefers-reduced-motion:reduce){
@@ -369,9 +400,10 @@
         <span class="mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 19c0-4 3-7 7-7s7 3 7 7"/><path d="M12 12V8"/><path d="M9 5c0 1.5 1.3 3 3 3s3-1.5 3-3-1.3-2-3-2-3 .5-3 2Z"/></svg>
         </span>
-        <span>Casa da Márcia<small>Louças & Utilidades</small></span>
+        <span>Casa da Márcia<small>Utilidades & Decoração</small></span>
       </a>
       <nav class="links" aria-label="Navegação principal">
+        <a href="#espelhos">Espelhos</a>
         <a href="#colecoes">Coleções</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#sobre">A Márcia</a>
@@ -389,6 +421,7 @@
 
 <div class="mobile-menu" id="mmenu">
   <button class="mclose" id="mclose" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <a href="#espelhos">Espelhos</a>
   <a href="#colecoes">Coleções</a>
   <a href="#diferenciais">Diferenciais</a>
   <a href="#sobre">A Márcia</a>
@@ -401,15 +434,15 @@
 <section class="hero" id="topo">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <span class="hero-kicker reveal"><i></i> Coleções novas toda semana</span>
-      <h1 class="reveal" data-d="1">A mesa bem posta<br />começa <em>aqui</em>.</h1>
-      <p class="lead reveal" data-d="2">Louças e porcelanas finas, jogos de chá, aparelhos de jantar, panelas e tudo o que a sua casa merece — curadoria cuidadosa e atendimento que parece de família.</p>
+      <span class="hero-kicker reveal"><i></i> Espelhos a pronta entrega · Novidades toda semana</span>
+      <h1 class="reveal" data-d="1">Sua casa mais bonita<br />começa <em>aqui</em>.</h1>
+      <p class="lead reveal" data-d="2">Utilidades para casa e decoração com curadoria cuidadosa: espelhos a pronta entrega com valor bom, peças de decoração, mesa posta, cozinha e tudo o que deixa o seu lar mais acolhedor.</p>
       <div class="hero-actions reveal" data-d="3">
         <a class="btn btn-solid heroWa" href="#" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg>
           Pedir pelo WhatsApp
         </a>
-        <a class="btn btn-outline" href="#colecoes">Ver coleções</a>
+        <a class="btn btn-outline" href="#espelhos">Ver espelhos</a>
       </div>
       <div class="hero-meta reveal" data-d="4">
         <div><b>+1.500</b><span>itens em estoque</span></div>
@@ -419,17 +452,50 @@
     </div>
     <div class="hero-figure reveal" data-d="2">
       <div class="arch">
-        <img src="img/hero.webp" width="809" height="648" alt="Jogo de chá em porcelana branca sobre mesa de madeira — Casa da Márcia" fetchpriority="high" />
+        <img src="img/hero.webp" width="809" height="648" alt="Peças de decoração e utilidades para casa — Casa da Márcia" fetchpriority="high" />
       </div>
       <div class="note">
         <span class="num">✦</span>
-        <small><b>Novidades da semana</b> já disponíveis para pedido</small>
+        <small><b>Espelhos em promoção</b> com 10% ou 15% de desconto</small>
       </div>
     </div>
   </div>
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="mq">
-      <span>Louças & Porcelanas</span><span>Mesa Posta</span><span>Aparelhos de Jantar</span><span>Cozinha & Panelas</span><span>Decoração & Florais</span><span>Presentes & Enxoval</span>
+      <span>Espelhos a Pronta Entrega</span><span>Utilidades para Casa</span><span>Decoração & Florais</span><span>Mesa Posta</span><span>Cozinha & Panelas</span><span>Presentes & Enxoval</span>
+    </div>
+  </div>
+</section>
+
+<!-- ESPELHOS (destaque) -->
+<section class="section mirrors" id="espelhos">
+  <div class="wrap mirror-grid">
+    <div class="mirror-copy">
+      <span class="eyebrow reveal">Destaque da loja</span>
+      <h2 class="reveal" data-d="1">Espelhos a pronta entrega, sempre com valor bom</h2>
+      <p class="reveal" data-d="2">Quem já conhece a Casa da Márcia sabe: aqui tem espelho a pronta entrega, sem espera e sem encomenda. Do modelo clássico bisotado ao orgânico que virou tendência na decoração — é escolher, pedir e receber.</p>
+      <p class="reveal" data-d="2">E o melhor: os espelhos estão <strong>sempre na promoção, com 10% ou 15% de desconto</strong>. Chama no WhatsApp e garanta o seu antes que acabe.</p>
+      <div class="mirror-pills reveal" data-d="3">
+        <span><i></i> Pronta entrega</span>
+        <span><i></i> 10% ou 15% off</span>
+        <span><i></i> Embalagem reforçada</span>
+      </div>
+      <div style="margin-top:26px" class="reveal" data-d="4">
+        <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg>
+          Quero meu espelho com desconto
+        </a>
+      </div>
+    </div>
+    <div class="mirror-figs">
+      <figure class="reveal" data-d="2">
+        <span class="off-badge"><span><b>-10%</b><small>off</small></span></span>
+        <div class="arch"><img src="img/espelho1.jpeg" width="800" height="1000" alt="Espelho retangular bisotado no lavabo — pronta entrega Casa da Márcia" loading="lazy" decoding="async" /></div>
+      </figure>
+      <figure class="reveal" data-d="3">
+        <span class="off-badge alt"><span><b>-15%</b><small>off</small></span></span>
+        <div class="arch"><img src="img/espelho2.jpeg" width="800" height="1000" alt="Espelho orgânico de parede na sala — pronta entrega Casa da Márcia" loading="lazy" decoding="async" /></div>
+      </figure>
     </div>
   </div>
 </section>
@@ -441,18 +507,27 @@
       <span class="eyebrow">O que você encontra</span>
       <div class="plate-divider"><i></i></div>
       <h2>Coleções para todos os cantos da casa</h2>
-      <p class="lead">Da porcelana que fica no aparador à panela do dia a dia — uma seleção variada, escolhida com carinho para receber bem.</p>
+      <p class="lead">Do espelho que transforma a parede à panela do dia a dia — utilidades e decoração escolhidas com carinho para o seu lar.</p>
     </div>
     <div class="col-grid">
-      <a class="ccard reveal" data-d="1" href="#contato">
-        <div class="arch"><img src="img/loucas.webp" width="710" height="614" alt="Bule de porcelana branca com pires" loading="lazy" decoding="async" /></div>
+      <a class="ccard reveal" data-d="1" href="#espelhos">
+        <span class="tag">Pronta entrega · até 15% off</span>
+        <div class="arch"><img src="img/espelho1.jpeg" width="800" height="1000" alt="Espelho retangular bisotado para banheiro e lavabo" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
-          <h3>Louças & Porcelanas</h3>
-          <p>Jogos de chá e café com acabamento delicado</p>
-          <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          <h3>Espelhos</h3>
+          <p>Pronta entrega com valor bom e desconto</p>
+          <span class="see">Ver espelhos <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
       <a class="ccard reveal" data-d="2" href="#contato">
+        <div class="arch"><img src="img/florais.webp" width="565" height="525" alt="Peças de decoração com estampa floral" loading="lazy" decoding="async" /></div>
+        <div class="cinfo">
+          <h3>Decoração & Florais</h3>
+          <p>Peças que dão personalidade à casa</p>
+          <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="ccard reveal" data-d="3" href="#contato">
         <div class="arch"><img src="img/mesa.webp" width="645" height="794" alt="Mesa posta em branco e azul com xícaras e flores" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
           <h3>Mesa Posta</h3>
@@ -460,27 +535,19 @@
           <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
-      <a class="ccard reveal" data-d="3" href="#contato">
-        <div class="arch"><img src="img/aparelhos.webp" width="685" height="860" alt="Aparelho de jantar posto sobre jogo americano" loading="lazy" decoding="async" /></div>
-        <div class="cinfo">
-          <h3>Aparelhos de Jantar</h3>
-          <p>Conjuntos completos para receber</p>
-          <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </div>
-      </a>
       <a class="ccard reveal" data-d="1" href="#contato">
         <div class="arch"><img src="img/cozinha.webp" width="760" height="525" alt="Conjunto de panelas para cozinha" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
           <h3>Cozinha & Panelas</h3>
-          <p>Resistentes para o dia a dia</p>
+          <p>Utilidades resistentes para o dia a dia</p>
           <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
       <a class="ccard reveal" data-d="2" href="#contato">
-        <div class="arch"><img src="img/florais.webp" width="565" height="525" alt="Pratos de porcelana com estampa floral" loading="lazy" decoding="async" /></div>
+        <div class="arch"><img src="img/loucas.webp" width="710" height="614" alt="Bule de porcelana branca com pires" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
-          <h3>Decoração & Florais</h3>
-          <p>Estampas que dão personalidade à mesa</p>
+          <h3>Louças & Porcelanas</h3>
+          <p>Jogos de chá e café com acabamento delicado</p>
           <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
@@ -505,18 +572,18 @@
     <div class="sec-head reveal">
       <span class="eyebrow">Por que comprar com a gente</span>
       <div class="plate-divider"><i></i></div>
-      <h2>Mais que uma loja, um jeito de receber</h2>
+      <h2>Mais que uma loja, um jeito de cuidar da casa</h2>
     </div>
     <div class="feat-grid">
       <div class="feat reveal" data-d="1">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z"/></svg></div>
         <h3>Curadoria de verdade</h3>
-        <p>A Márcia escolhe peça por peça. Só entra na loja o que ela colocaria na própria mesa.</p>
+        <p>A Márcia escolhe peça por peça. Só entra na loja o que ela colocaria na própria casa.</p>
       </div>
       <div class="feat reveal" data-d="2">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h3>Variedade no estoque</h3>
-        <p>Mais de 1.500 itens entre louças, mesa, cozinha e decoração — sempre com novidades chegando.</p>
+        <h3>Espelhos a pronta entrega</h3>
+        <p>Nada de espera: espelhos em estoque, com valor bom e sempre em promoção com 10% ou 15% off.</p>
       </div>
       <div class="feat reveal" data-d="3">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
@@ -526,7 +593,7 @@
       <div class="feat reveal" data-d="4">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v8H3z"/><path d="M16 10h3l2 2.5V15h-5z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
         <h3>Entrega cuidadosa</h3>
-        <p>Embalagem reforçada para peças frágeis. Entrega na região e envio para todo o Brasil.</p>
+        <p>Embalagem reforçada para espelhos e peças frágeis. Entrega na região e envio para todo o Brasil.</p>
       </div>
     </div>
   </div>
@@ -541,13 +608,13 @@
     </div>
     <div class="about-copy">
       <span class="eyebrow reveal">Quem é a Márcia</span>
-      <h2 class="reveal" data-d="1">Uma paixão por mesa bonita virou loja</h2>
-      <p class="reveal" data-d="2">A Casa da Márcia nasceu do gosto por receber bem. O que começou em casa, escolhendo louças e arrumando a mesa para a família, se transformou numa loja conhecida pela variedade e pelo atendimento atencioso.</p>
-      <p class="reveal" data-d="2">Hoje a Márcia ajuda centenas de clientes a montar enxoval, presentear e renovar a casa — sempre com indicação honesta e aquele toque pessoal de quem ama o que vende.</p>
+      <h2 class="reveal" data-d="1">Uma paixão por casa arrumada virou loja</h2>
+      <p class="reveal" data-d="2">A Casa da Márcia nasceu do gosto por deixar a casa bonita e receber bem. O que começou escolhendo peças de decoração e utilidades para a própria família se transformou numa loja conhecida pela variedade e pelo atendimento atencioso.</p>
+      <p class="reveal" data-d="2">Hoje a Márcia ajuda centenas de clientes a decorar, montar enxoval, presentear e renovar a casa — sempre com indicação honesta e aquele toque pessoal de quem ama o que vende.</p>
       <ul class="about-list">
-        <li class="reveal" data-d="3"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Peças para presente, enxoval e dia a dia</li>
+        <li class="reveal" data-d="3"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Utilidades e decoração para presente, enxoval e dia a dia</li>
         <li class="reveal" data-d="3"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Indicação personalizada por foto e vídeo</li>
-        <li class="reveal" data-d="4"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Condições especiais para quem leva o conjunto completo</li>
+        <li class="reveal" data-d="4"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Espelhos a pronta entrega sempre em promoção</li>
       </ul>
       <div style="margin-top:30px" class="reveal" data-d="4">
         <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">Conversar com a Márcia</a>
@@ -563,8 +630,8 @@
       <div class="promo-in">
         <div>
           <span class="eyebrow light">Alerta de promoção</span>
-          <h2>Toda semana tem peça nova e oferta especial</h2>
-          <p>Chame no WhatsApp e receba as novidades e os preços do dia em primeira mão. Sem compromisso.</p>
+          <h2>Espelhos sempre com 10% ou 15% de desconto</h2>
+          <p>Toda semana tem peça nova e oferta especial. Chame no WhatsApp e receba as novidades e os preços do dia em primeira mão. Sem compromisso.</p>
         </div>
         <a class="btn btn-solid heroWa" href="#" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg>
@@ -581,12 +648,12 @@
     <div class="sec-head reveal">
       <span class="eyebrow">Quem comprou, recomenda</span>
       <div class="plate-divider"><i></i></div>
-      <h2>Clientes apaixonados pela mesa</h2>
+      <h2>Clientes apaixonados pela casa</h2>
     </div>
     <div class="test-grid">
       <div class="tcard reveal" data-d="1">
         <span class="stars">★★★★★</span>
-        <p>Comprei o jogo de chá de presente e foi um sucesso. A Márcia me mandou vídeo de cada peça antes, atendimento impecável.</p>
+        <p>Comprei o espelho orgânico na promoção e chegou rapidinho, era pronta entrega mesmo. Transformou a minha sala!</p>
         <div class="who"><span class="av" style="background:var(--blue)">A</span><div><b>Adriana M.</b><span>São Paulo, SP</span></div></div>
       </div>
       <div class="tcard reveal" data-d="2">
@@ -596,7 +663,7 @@
       </div>
       <div class="tcard reveal" data-d="3">
         <span class="stars">★★★★★</span>
-        <p>As porcelanas são lindas de verdade, idênticas às fotos. Virei cliente fiel, sempre volto quando chega coleção nova.</p>
+        <p>As peças são lindas de verdade, idênticas às fotos. Virei cliente fiel, sempre volto quando chega novidade.</p>
         <div class="who"><span class="av" style="background:var(--blue-300)">C</span><div><b>Cláudia F.</b><span>Recompra frequente</span></div></div>
       </div>
     </div>
@@ -646,11 +713,12 @@
         <div class="field">
           <label for="interesse">O que você procura?</label>
           <select id="interesse" name="interesse">
-            <option>Louças & Porcelanas</option>
-            <option>Mesa Posta</option>
-            <option>Aparelhos de Jantar</option>
-            <option>Cozinha & Panelas</option>
+            <option>Espelhos (pronta entrega)</option>
             <option>Decoração & Florais</option>
+            <option>Utilidades para Casa</option>
+            <option>Mesa Posta</option>
+            <option>Cozinha & Panelas</option>
+            <option>Louças & Porcelanas</option>
             <option>Presente / Enxoval</option>
             <option>Ainda não sei, quero ajuda</option>
           </select>
@@ -673,9 +741,9 @@
       <div>
         <div class="brand">
           <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 19c0-4 3-7 7-7s7 3 7 7"/><path d="M12 12V8"/><path d="M9 5c0 1.5 1.3 3 3 3s3-1.5 3-3-1.3-2-3-2-3 .5-3 2Z"/></svg></span>
-          <span>Casa da Márcia<small>Louças & Utilidades</small></span>
+          <span>Casa da Márcia<small>Utilidades & Decoração</small></span>
         </div>
-        <p class="fdesc">A elegância que mora na sua mesa. Louças, porcelanas, mesa posta e utilidades para receber bem todos os dias.</p>
+        <p class="fdesc">Utilidades para casa e decoração para deixar o seu lar mais bonito — com espelhos a pronta entrega e sempre em promoção.</p>
         <div class="socials">
           <a class="waText" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg></a>
           <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
@@ -683,10 +751,11 @@
       </div>
       <div class="foot-col">
         <h4>Coleções</h4>
-        <a href="#colecoes">Louças & Porcelanas</a>
+        <a href="#espelhos">Espelhos</a>
+        <a href="#colecoes">Decoração & Florais</a>
         <a href="#colecoes">Mesa Posta</a>
-        <a href="#colecoes">Aparelhos de Jantar</a>
         <a href="#colecoes">Cozinha & Panelas</a>
+        <a href="#colecoes">Louças & Porcelanas</a>
       </div>
       <div class="foot-col">
         <h4>A loja</h4>
@@ -717,7 +786,7 @@
 (function(){
   /* ====== CONFIGURE AQUI ====== */
   var WHATSAPP = "5511999999999"; // DDI+DDD+numero, so digitos
-  var MSG = "Ola, Marcia! Vim pelo site e gostaria de saber mais sobre os produtos.";
+  var MSG = "Ola, Marcia! Vim pelo site e quero saber mais sobre os espelhos a pronta entrega e as promocoes.";
   /* ============================ */
 
   var waLink = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(MSG);
