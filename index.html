@@ -38,6 +38,7 @@
     --r:18px;
     --arch:230px; /* raio do arco assinatura */
     --ease:cubic-bezier(.22,.61,.36,1);
+    --spring:cubic-bezier(.34,1.4,.44,1); /* easing "mola" da hero 21st.dev */
     --shadow-sm:0 2px 10px rgba(12,43,78,.07);
     --shadow-md:0 18px 44px rgba(12,43,78,.13);
     --shadow-lg:0 30px 70px rgba(8,30,56,.28);
@@ -90,69 +91,93 @@
   .btn-outline.dark{color:var(--navy-800);border-color:var(--line)}
   .btn-outline.dark:hover{border-color:var(--blue);color:var(--blue);background:transparent}
 
-  /* ===== NAV ===== */
+  /* ===== NAV (agora sobre hero claro: texto escuro por padrão) ===== */
   header.nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);
     border-bottom:1px solid transparent}
   header.nav .navin{display:flex;align-items:center;justify-content:space-between;gap:16px;height:76px}
   header.nav.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     border-color:var(--line);box-shadow:var(--shadow-sm)}
-  .brand{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:1.3rem;color:#fff;transition:color .3s}
-  header.nav.scrolled .brand{color:var(--navy-800)}
+  .brand{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:1.3rem;color:var(--navy-800)}
   .brand .mark{width:40px;height:40px;flex:0 0 40px;border-radius:50% 50% 6px 6px;display:grid;place-items:center;
     background:linear-gradient(150deg,var(--blue-300),var(--blue));box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
   .brand .mark svg{width:21px;height:21px}
   .brand small{display:block;font-family:var(--font-sans);font-size:8.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:500;opacity:.72;margin-top:2px}
   nav.links{display:flex;align-items:center;gap:30px}
-  nav.links a{font-size:.88rem;font-weight:400;color:rgba(255,255,255,.85);transition:color .2s;padding:6px 0;position:relative}
+  nav.links a{font-size:.88rem;font-weight:400;color:var(--ink-soft);transition:color .2s;padding:6px 0;position:relative}
   nav.links a::after{content:"";position:absolute;left:50%;bottom:0;width:4px;height:4px;border-radius:50%;background:currentColor;
     transform:translateX(-50%) scale(0);transition:transform .25s var(--ease)}
-  nav.links a:hover{color:#fff}
+  nav.links a:hover{color:var(--blue)}
   nav.links a:hover::after{transform:translateX(-50%) scale(1)}
-  header.nav.scrolled nav.links a{color:var(--ink-soft)}
-  header.nav.scrolled nav.links a:hover{color:var(--blue)}
-  .nav-cta{display:inline-flex;min-height:44px;padding:11px 22px;font-size:.86rem}
-  header.nav .nav-cta{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);box-shadow:none}
-  header.nav .nav-cta:hover{background:#fff;color:var(--navy-800);border-color:#fff}
-  header.nav.scrolled .nav-cta{background:var(--blue);color:#fff;border-color:var(--blue)}
-  header.nav.scrolled .nav-cta:hover{background:var(--navy-700);border-color:var(--navy-700)}
-  .burger{display:none;background:none;border:0;cursor:pointer;padding:10px;color:#fff;border-radius:10px;transition:color .3s}
-  header.nav.scrolled .burger{color:var(--navy-800)}
+  .nav-cta{display:inline-flex;min-height:44px;padding:11px 22px;font-size:.86rem;
+    background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:none}
+  .nav-cta:hover{background:var(--navy-700);border-color:var(--navy-700)}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:10px;color:var(--navy-800);border-radius:10px}
   .burger svg{width:26px;height:26px}
 
-  /* ===== HERO (gradient) ===== */
-  .hero{position:relative;background:var(--grad-hero);color:#fff;overflow:hidden;
-    padding:clamp(130px,16vw,180px) 0 0}
-  /* textura de círculos concêntricos */
-  .hero::before{content:"";position:absolute;right:-14%;top:-30%;width:64vw;height:64vw;border-radius:50%;
-    background:repeating-radial-gradient(circle at center,rgba(255,255,255,.05) 0 1.5px,transparent 1.5px 56px);
+  /* ===== HERO (21st.dev marquee hero — adaptado, base branca) ===== */
+  .hero{position:relative;background:var(--white);color:var(--ink);overflow:hidden;
+    min-height:100svh;display:flex;flex-direction:column;
+    padding-top:clamp(104px,13vw,140px)}
+  /* textura assinatura: círculos concêntricos, agora em azul suave sobre branco */
+  .hero::before{content:"";position:absolute;left:50%;top:-46%;transform:translateX(-50%);
+    width:120vw;height:120vw;max-width:1500px;max-height:1500px;border-radius:50%;
+    background:repeating-radial-gradient(circle at center,rgba(47,109,180,.06) 0 1.5px,transparent 1.5px 56px);
     pointer-events:none}
-  .hero::after{content:"";position:absolute;left:-18%;bottom:-42%;width:52vw;height:52vw;border-radius:50%;
-    background:radial-gradient(circle at center,rgba(127,174,220,.22),transparent 65%);pointer-events:none}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,6vw,72px);align-items:center;position:relative;z-index:2}
-  .hero-copy{padding-bottom:clamp(64px,8vw,96px)}
-  .hero-kicker{display:inline-flex;align-items:center;gap:10px;font-size:.74rem;font-weight:500;letter-spacing:.24em;
-    text-transform:uppercase;color:var(--sky);margin-bottom:26px}
-  .hero-kicker i{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--sky);display:block}
-  .hero-copy h1{font-size:clamp(2.7rem,6.4vw,4.9rem);letter-spacing:.005em}
-  .hero-copy h1 em{font-style:italic;color:var(--sky)}
-  .hero-copy .lead{color:rgba(255,255,255,.82);margin:24px 0 36px;font-size:clamp(1rem,1.7vw,1.13rem);font-weight:300}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:13px}
-  .hero-meta{display:flex;flex-wrap:wrap;gap:12px 34px;margin-top:44px;padding-top:28px;border-top:1px solid rgba(255,255,255,.16)}
-  .hero-meta div b{display:block;font-family:var(--font-display);font-size:1.5rem;font-weight:400;line-height:1.15}
-  .hero-meta div span{font-size:.78rem;color:rgba(255,255,255,.66);letter-spacing:.04em}
+  .hero::after{content:"";position:absolute;left:50%;bottom:-30%;transform:translateX(-50%);
+    width:90vw;height:60vw;border-radius:50%;
+    background:radial-gradient(closest-side,rgba(191,217,242,.55),transparent 70%);pointer-events:none}
+
+  .hero-inner{position:relative;z-index:2;flex:1 1 auto;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding-bottom:clamp(18px,3vh,32px)}
+
+  /* pill tagline (equivalente ao "tagline" da skill) */
+  .hero-tag{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px;
+    border:1px solid var(--line);background:rgba(255,255,255,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-radius:999px;padding:8px 18px;font-size:.78rem;font-weight:500;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-soft);box-shadow:var(--shadow-sm)}
+  .hero-tag i{width:7px;height:7px;border-radius:50%;border:1.5px solid var(--blue);display:block}
+
+  .hero-title{font-size:clamp(2.7rem,7vw,5.1rem);letter-spacing:-.01em;color:var(--navy-800);max-width:16ch}
+  .hero-title em{font-style:italic;color:var(--blue)}
+  /* stagger palavra a palavra (staggerChildren da skill) */
+  .hero-title .w{display:inline-block;opacity:0;transform:translateY(14px);
+    animation:heroUp .8s var(--spring) forwards;animation-delay:calc(.15s + var(--i,0)*.09s)}
+
+  .hero .lead.hlead{margin:22px auto 0;max-width:56ch;font-size:clamp(1rem,1.7vw,1.13rem)}
+
+  .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:13px;margin-top:34px}
+  /* micro-interação do ActionButton da skill (scale no hover/tap) */
+  .hero-actions .btn{transition:transform .25s var(--spring),box-shadow .25s var(--ease),background .25s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+  .hero-actions .btn:hover{transform:scale(1.05)}
+  .hero-actions .btn:active{transform:scale(.95)}
+
+  .hero-meta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 40px;margin-top:38px;
+    padding-top:26px;border-top:1px solid var(--line);width:min(640px,100%)}
+  .hero-meta div b{display:block;font-family:var(--font-display);font-size:1.5rem;font-weight:400;line-height:1.15;color:var(--navy-800)}
+  .hero-meta div span{font-size:.78rem;color:var(--ink-soft);letter-spacing:.04em}
   .hero-meta .stars{color:var(--star);letter-spacing:2px;font-size:.95rem}
 
-  /* imagem em arco — elemento assinatura */
-  .arch{border-radius:var(--arch) var(--arch) var(--r) var(--r);overflow:hidden;position:relative;isolation:isolate}
-  .hero-figure{position:relative;align-self:end;padding-bottom:clamp(64px,8vw,96px)}
-  .hero-figure .arch{box-shadow:var(--shadow-lg);border:6px solid rgba(255,255,255,.14)}
-  .hero-figure .arch img{width:100%;height:clamp(400px,44vw,540px);object-fit:cover;object-position:center 38%}
-  .hero-figure .note{position:absolute;left:-16px;bottom:calc(clamp(64px,8vw,96px) + 30px);background:#fff;color:var(--ink);border-radius:14px;
-    padding:14px 18px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:12px;z-index:3}
-  .hero-figure .note .num{font-family:var(--font-display);font-size:1.7rem;color:var(--blue);line-height:1}
-  .hero-figure .note small{font-size:.72rem;color:var(--ink-soft);max-width:118px;line-height:1.35;display:block}
+  /* entradas em fade-up (variants da skill) */
+  .h-in{opacity:0;transform:translateY(14px);animation:heroUp .8s var(--spring) forwards;
+    animation-delay:calc(.15s + var(--i,0)*.09s)}
+  @keyframes heroUp{to{opacity:1;transform:none}}
 
-  /* faixa marquee */
+  /* ===== marquee de imagens (assinatura da hero 21st.dev) =====
+     movimento controlado por JS (requestAnimationFrame), igual ao framer-motion */
+  .hero-marquee{position:relative;z-index:1;width:100%;flex:0 0 auto;
+    height:clamp(220px,32vh,330px);display:flex;align-items:center;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent);
+    mask-image:linear-gradient(to bottom,transparent,#000 20%,#000 80%,transparent)}
+  .hero-marquee-track{display:flex;flex-wrap:nowrap;width:max-content;align-items:center;
+    padding:26px 0;will-change:transform}
+  .hm-card{position:relative;aspect-ratio:3/4;height:clamp(170px,24vh,252px);flex:0 0 auto;
+    margin-right:clamp(14px,2vw,22px);border-radius:20px;overflow:hidden;
+    box-shadow:var(--shadow-md);border:5px solid #fff;background:var(--ice)}
+  .hm-card img{width:100%;height:100%;object-fit:cover}
+  .hm-card:nth-child(odd){transform:rotate(-2deg)}
+  .hm-card:nth-child(even){transform:rotate(5deg)}
+
+  /* faixa marquee de texto (mantida) */
   .marquee{background:var(--navy-900);color:var(--sky);overflow:hidden;padding:15px 0;border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:2}
   .marquee-track{display:flex;gap:0;width:max-content;animation:marquee 30s linear infinite}
   .marquee span{font-family:var(--font-display);font-size:.98rem;letter-spacing:.14em;text-transform:uppercase;
@@ -167,6 +192,7 @@
 
   /* ===== COLEÇÕES (arcos) ===== */
   .col-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,28px)}
+  .arch{border-radius:var(--arch) var(--arch) var(--r) var(--r);overflow:hidden;position:relative;isolation:isolate}
   .ccard{position:relative;display:block}
   .ccard .arch{box-shadow:var(--shadow-sm);border:1px solid var(--line);transition:box-shadow .35s var(--ease),transform .35s var(--ease)}
   .ccard .arch img{width:100%;height:clamp(300px,30vw,380px);object-fit:cover;transition:transform .7s var(--ease)}
@@ -333,14 +359,8 @@
   .mclose svg{width:30px;height:30px}
 
   @media(max-width:980px){
-    .hero{padding-top:clamp(108px,14vw,140px)}
-    .hero-grid{grid-template-columns:1fr;gap:36px;align-items:start}
-    .hero-copy{padding-bottom:0}
-    .hero-figure{max-width:520px;margin:0 auto;padding-bottom:52px;width:100%}
-    .hero::before{right:-30%;top:-8%;width:100vw;height:100vw;
-      background:repeating-radial-gradient(circle at center,rgba(255,255,255,.07) 0 1.5px,transparent 1.5px 44px)}
-    .hero::after{left:-35%;bottom:-18%;width:110vw;height:110vw;
-      background:radial-gradient(circle at center,rgba(127,174,220,.3),transparent 62%)}
+    .hero{padding-top:clamp(96px,13vw,120px)}
+    .hero-marquee{height:clamp(200px,28vh,290px)}
     .col-grid{grid-template-columns:repeat(2,1fr)}
     .col-grid .ccard:nth-child(2),.col-grid .ccard:nth-child(5){transform:none}
     .feat-grid{grid-template-columns:repeat(2,1fr)}
@@ -354,21 +374,17 @@
     nav.links,.nav-cta{display:none}
     .burger{display:block}
     :root{--arch:150px}
-    .hero{padding-top:100px}
-    .hero-grid{gap:30px}
-    .hero-kicker{margin-bottom:18px;font-size:.68rem}
-    .hero-copy h1{font-size:clamp(2.35rem,10.5vw,3rem)}
-    .hero-copy .lead{margin:18px 0 26px;font-size:.98rem}
-    .hero-actions{flex-direction:column;align-items:stretch}
+    .hero{padding-top:92px;min-height:100svh}
+    .hero-tag{font-size:.66rem;letter-spacing:.12em;padding:7px 14px;margin-bottom:18px}
+    .hero-title{font-size:clamp(2.35rem,10.5vw,3rem)}
+    .hero .lead.hlead{margin-top:16px;font-size:.98rem}
+    .hero-actions{flex-direction:column;align-items:stretch;width:100%;margin-top:26px}
     .hero-actions .btn{width:100%}
-    .hero-meta{gap:14px 20px;margin-top:30px;padding-top:22px;justify-content:space-between}
+    .hero-meta{gap:14px 20px;margin-top:28px;padding-top:20px;justify-content:space-between}
     .hero-meta div b{font-size:1.25rem}
     .hero-meta div span{font-size:.7rem}
-    .hero-figure{padding-bottom:44px}
-    .hero-figure .arch{border-width:4px}
-    .hero-figure .arch img{height:min(96vw,380px);object-position:center 38%}
-    .hero-figure .note{left:10px;bottom:calc(44px + 18px);padding:11px 14px}
-    .hero-figure .note .num{font-size:1.3rem}
+    .hero-marquee{height:clamp(170px,24vh,230px)}
+    .hm-card{height:clamp(140px,19vh,180px);border-width:4px;border-radius:16px}
     .marquee span{font-size:.82rem;padding:0 18px;gap:18px}
     .col-grid{grid-template-columns:1fr}
     .ccard .arch img{height:320px}
@@ -387,6 +403,7 @@
     *{animation:none!important;scroll-behavior:auto!important;transition-duration:.001ms!important}
     .reveal{opacity:1;transform:none}
     .marquee-track{animation:none!important}
+    .h-in,.hero-title .w{opacity:1!important;transform:none!important}
   }
 </style>
 </head>
@@ -430,36 +447,66 @@
   <a class="btn btn-solid mwa" href="#" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
 
-<!-- HERO -->
+<!-- HERO — Animated Marquee Hero (21st.dev) adaptado à identidade Casa da Márcia -->
 <section class="hero" id="topo">
-  <div class="wrap hero-grid">
-    <div class="hero-copy">
-      <span class="hero-kicker reveal"><i></i> Espelhos a pronta entrega · Novidades toda semana</span>
-      <h1 class="reveal" data-d="1">Sua casa mais bonita<br />começa <em>aqui</em>.</h1>
-      <p class="lead reveal" data-d="2">Utilidades para casa e decoração com curadoria cuidadosa: espelhos a pronta entrega com valor bom, peças de decoração, mesa posta, cozinha e tudo o que deixa o seu lar mais acolhedor.</p>
-      <div class="hero-actions reveal" data-d="3">
-        <a class="btn btn-solid heroWa" href="#" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg>
-          Pedir pelo WhatsApp
-        </a>
-        <a class="btn btn-outline" href="#espelhos">Ver espelhos</a>
-      </div>
-      <div class="hero-meta reveal" data-d="4">
-        <div><b>+1.500</b><span>itens em estoque</span></div>
-        <div><b>+10 anos</b><span>de loja</span></div>
-        <div><b class="stars">★★★★★</b><span>clientes que voltam</span></div>
-      </div>
+  <div class="wrap hero-inner">
+    <!-- tagline pill -->
+    <span class="hero-tag h-in" style="--i:0"><i></i> Espelhos a pronta entrega · Novidades toda semana</span>
+
+    <!-- título com stagger palavra a palavra -->
+    <h1 class="hero-title" aria-label="Sua casa mais bonita começa aqui.">
+      <span class="w" style="--i:1" aria-hidden="true">Sua</span>
+      <span class="w" style="--i:2" aria-hidden="true">casa</span>
+      <span class="w" style="--i:3" aria-hidden="true">mais</span>
+      <span class="w" style="--i:4" aria-hidden="true">bonita</span><br />
+      <span class="w" style="--i:5" aria-hidden="true">começa</span>
+      <span class="w" style="--i:6" aria-hidden="true"><em>aqui</em>.</span>
+    </h1>
+
+    <!-- descrição -->
+    <p class="lead hlead h-in" style="--i:7">Utilidades para casa e decoração com curadoria cuidadosa: espelhos a pronta entrega com valor bom, peças de decoração, mesa posta, cozinha e tudo o que deixa o seu lar mais acolhedor.</p>
+
+    <!-- CTAs -->
+    <div class="hero-actions h-in" style="--i:8">
+      <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg>
+        Pedir pelo WhatsApp
+      </a>
+      <a class="btn btn-outline dark" href="#espelhos">Ver espelhos</a>
     </div>
-    <div class="hero-figure reveal" data-d="2">
-      <div class="arch">
-        <img src="img/xicaras2.jpeg" width="1000" height="1000" alt="Xícara, pires e bowl de porcelana sobre jogo americano listrado — Casa da Márcia" fetchpriority="high" style="object-position:center 55%" />
-      </div>
-      <div class="note">
-        <span class="num">✦</span>
-        <small><b>Pronta entrega</b> e atendimento próximo no WhatsApp</small>
-      </div>
+
+    <!-- meta / prova social -->
+    <div class="hero-meta h-in" style="--i:9">
+      <div><b>+1.500</b><span>itens em estoque</span></div>
+      <div><b>+10 anos</b><span>de loja</span></div>
+      <div><b class="stars">★★★★★</b><span>clientes que voltam</span></div>
     </div>
   </div>
+
+  <!-- marquee de imagens (fotos reais da loja, já existentes no projeto) -->
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="hero-marquee-track" id="heroMq">
+      <!-- conjunto 1 -->
+      <div class="hm-card"><img src="img/xicaras2.jpeg" width="1000" height="1000" alt="" fetchpriority="high" /></div>
+      <div class="hm-card"><img src="img/espelho1.jpeg" width="800" height="1000" alt="" /></div>
+      <div class="hm-card"><img src="img/mesa.webp" width="645" height="794" alt="" /></div>
+      <div class="hm-card"><img src="img/enxoval.jpeg" width="800" height="800" alt="" /></div>
+      <div class="hm-card"><img src="img/espelho2.jpeg" width="800" height="1000" alt="" /></div>
+      <div class="hm-card"><img src="img/loucas.webp" width="710" height="614" alt="" /></div>
+      <div class="hm-card"><img src="img/cozinha.webp" width="760" height="525" alt="" /></div>
+      <div class="hm-card"><img src="img/urso.jpeg" width="422" height="751" alt="" /></div>
+      <!-- conjunto 2 (cópia para o loop infinito de -50%) -->
+      <div class="hm-card"><img src="img/xicaras2.jpeg" width="1000" height="1000" alt="" /></div>
+      <div class="hm-card"><img src="img/espelho1.jpeg" width="800" height="1000" alt="" /></div>
+      <div class="hm-card"><img src="img/mesa.webp" width="645" height="794" alt="" /></div>
+      <div class="hm-card"><img src="img/enxoval.jpeg" width="800" height="800" alt="" /></div>
+      <div class="hm-card"><img src="img/espelho2.jpeg" width="800" height="1000" alt="" /></div>
+      <div class="hm-card"><img src="img/loucas.webp" width="710" height="614" alt="" /></div>
+      <div class="hm-card"><img src="img/cozinha.webp" width="760" height="525" alt="" /></div>
+      <div class="hm-card"><img src="img/.jpeg" width="422" height="751" alt="" /></div>
+    </div>
+  </div>
+
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track" id="mq">
       <span>Espelhos a Pronta Entrega</span><span>Utilidades para Casa</span><span>Decoração & Florais</span><span>Mesa Posta</span><span>Cozinha & Panelas</span><span>Presentes & Enxoval</span>
@@ -478,7 +525,6 @@
       <div class="mirror-pills reveal" data-d="3">
         <span><i></i> Pronta entrega</span>
         <span><i></i> Modelos variados</span>
-        <span><i></i> Embalagem reforçada</span>
       </div>
       <div style="margin-top:26px" class="reveal" data-d="4">
         <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">
@@ -518,9 +564,9 @@
         </div>
       </a>
       <a class="ccard reveal" data-d="2" href="#contato">
-        <div class="arch"><img src="img/pratos.webp" width="422" height="751" alt="Jogo de pratos e xícaras em cristal ecológico — serve 4 pessoas, 20 peças" loading="lazy" decoding="async" /></div>
+        <div class="arch"><img src="img/urso.jpeg" width="422" height="751" alt="Jogo de pratos e xícaras em cristal ecológico — serve 4 pessoas, 20 peças" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
-          <h3>Decoração & Florais</h3>
+          <h3>Decoração</h3>
           <p>Peças que dão personalidade à casa</p>
           <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
@@ -537,7 +583,7 @@
         <div class="arch"><img src="img/cozinha.webp" width="760" height="525" alt="Conjunto de panelas para cozinha" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
           <h3>Cozinha & Panelas</h3>
-          <p>Utilidades resistentes para o dia a dia</p>
+          <p>Produtos de qualidade para seu dia a dia</p>
           <span class="see">Consultar peças <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
       </a>
@@ -550,7 +596,7 @@
         </div>
       </a>
       <a class="ccard reveal" data-d="3" href="#contato">
-        <div class="arch"><img src="img/tacas.webp" width="800" height="800" alt="Par de taças de cristal com borda dourada — Casa da Márcia" loading="lazy" decoding="async" /></div>
+        <div class="arch"><img src="img/enxoval.jpeg" width="800" height="800" alt="Par de taças de cristal com borda dourada — Casa da Márcia" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
           <h3>Presentes & Enxoval</h3>
           <p>Conjuntos prontos para presentear</p>
@@ -591,7 +637,6 @@
       <div class="feat reveal" data-d="4">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v8H3z"/><path d="M16 10h3l2 2.5V15h-5z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
         <h3>Entrega cuidadosa</h3>
-        <p>Embalagem reforçada para espelhos e peças frágeis. Entrega na região e envio para todo o Brasil.</p>
       </div>
     </div>
   </div>
@@ -802,7 +847,7 @@
   document.getElementById('mclose').addEventListener('click', function(){ mmenu.classList.remove('open'); document.body.style.overflow=''; });
   mmenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ mmenu.classList.remove('open'); document.body.style.overflow=''; }); });
 
-  /* duplica marquee para loop infinito */
+  /* duplica marquee de texto para loop infinito (o de imagens já vem duplicado no HTML) */
   var mq = document.getElementById('mq');
   if(mq){ mq.innerHTML += mq.innerHTML; }
 
@@ -811,6 +856,39 @@
     entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+})();
+</script>
+<script>
+/* ===== Marquee de imagens da hero — motor JS (base: framer-motion x:[-100%,0%], linear, repeat Infinity) ===== */
+(function(){
+  var track = document.getElementById('heroMq');
+  if(!track) return;
+
+  var SPEED = 42;           // px por segundo (equivale ao duration:40 da skill)
+  var x = 0, half = 0;
+
+  function measure(){
+    half = track.scrollWidth / 2; // largura de UM conjunto (o HTML já tem 2 cópias)
+    if (-x >= half && half > 0) x = x % half;
+  }
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+
+  var last = null;
+  function tick(now){
+    if(last === null) last = now;
+    var dt = (now - last) / 1000;
+    last = now;
+    if(dt > 0.1) dt = 0.1;            // evita salto ao voltar de aba em segundo plano
+
+    x -= SPEED * dt;                   // desloca para a esquerda (loop infinito)
+    if(half > 0 && -x >= half) x += half; // reinicia sem "pulo" ao completar um conjunto
+
+    track.style.transform = 'translate3d(' + x.toFixed(2) + 'px,0,0)';
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
 })();
 </script>
 </body>
