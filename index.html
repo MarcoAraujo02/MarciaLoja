@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Casa da Márcia — Utilidades para Casa, Decoração & Espelhos</title>
-<meta name="description" content="Casa da Márcia: utilidades para casa e decoração — espelhos a pronta entrega com valor bom, mesa posta, cozinha e muito mais. Atendimento personalizado via WhatsApp." />
+<title>Casa e Decoração — Utilidades para Casa, Decoração & Espelhos</title>
+<meta name="description" content="Casa e Decoração: utilidades para casa e decoração — espelhos a pronta entrega com valor bom, mesa posta, cozinha e muito mais. Atendimento personalizado via WhatsApp." />
 <meta name="theme-color" content="#0C2B4E" />
-<meta property="og:title" content="Casa da Márcia — Utilidades para Casa & Decoração" />
+<meta property="og:title" content="Casa e Decoração — Utilidades para Casa & Decoração" />
 <meta property="og:description" content="Espelhos a pronta entrega com valor bom, decoração e utilidades para deixar o seu lar mais bonito. Atendimento próximo via WhatsApp." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -288,29 +288,20 @@
   .tcard .who span{font-size:.78rem;color:var(--muted)}
 
   /* ===== CONTATO ===== */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,60px);align-items:start}
+  .contact-grid{display:grid;grid-template-columns:1fr;justify-items:center;text-align:center}
+  .contact-info{width:100%;max-width:760px}
   .contact-info h2{font-size:clamp(1.95rem,3.7vw,2.7rem);margin-bottom:18px}
-  .info-list{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:0}
+  .contact-info .lead{margin:0 auto}
+  .info-list{list-style:none;padding:0;margin:34px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(24px,4vw,48px);text-align:left}
   .info-list li{display:flex;gap:16px;align-items:center;padding:17px 0;border-bottom:1px solid var(--line)}
-  .info-list li:first-child{border-top:1px solid var(--line)}
+  .info-list li:nth-child(1),.info-list li:nth-child(2){border-top:1px solid var(--line)}
   .info-list .ic{width:46px;height:46px;border-radius:50% 50% 8px 8px;background:var(--ice);
     display:grid;place-items:center;color:var(--blue);flex:0 0 46px}
   .info-list .ic svg{width:20px;height:20px}
   .info-list b{font-size:.92rem;font-weight:600;display:block}
   .info-list span,.info-list a{font-size:.88rem;color:var(--ink-soft)}
   .info-list a:hover{color:var(--blue)}
-  .form{background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(26px,3vw,36px);box-shadow:var(--shadow-md);position:relative;overflow:hidden}
-  .form::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--grad-hero)}
-  .form h3{font-size:1.55rem;margin-bottom:6px}
-  .form p.sub{font-size:.88rem;color:var(--ink-soft);margin-bottom:24px}
-  .field{margin-bottom:16px}
-  .field label{display:block;font-size:.78rem;font-weight:600;letter-spacing:.03em;margin-bottom:7px;color:var(--ink)}
-  .field input,.field textarea,.field select{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
-    background:var(--ice);font-family:var(--font-sans);font-size:.94rem;font-weight:300;color:var(--ink);transition:border .22s,box-shadow .22s;min-height:48px}
-  .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(47,109,180,.14);background:#fff}
-  .field textarea{resize:vertical;min-height:110px}
-  .form .btn{width:100%;margin-top:8px}
-  .form-note{font-size:.74rem;color:var(--muted);text-align:center;margin-top:14px}
+  .contact-cta{margin-top:38px}
 
   /* ===== FOOTER ===== */
   footer{background:var(--navy-900);color:#B8CCE2;padding:64px 0 28px;position:relative}
@@ -364,7 +355,9 @@
     .col-grid{grid-template-columns:repeat(2,1fr)}
     .col-grid .ccard:nth-child(2),.col-grid .ccard:nth-child(5){transform:none}
     .feat-grid{grid-template-columns:repeat(2,1fr)}
-    .about-grid,.contact-grid,.mirror-grid{grid-template-columns:1fr;gap:42px}
+    .about-grid,.mirror-grid{grid-template-columns:1fr;gap:42px}
+    .info-list{grid-template-columns:1fr}
+    .info-list li:nth-child(2){border-top:0}
     .about-fig{margin:0 auto}
     .mirror-figs{max-width:560px;margin:0 auto;width:100%}
     .test-grid{grid-template-columns:1fr}
@@ -413,17 +406,17 @@
 <header class="nav" id="nav">
   <div class="wrap">
     <div class="navin">
-      <a href="#topo" class="brand" aria-label="Casa da Márcia — início">
+      <a href="#topo" class="brand" aria-label="Casa e Decoração — início">
         <span class="mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 19c0-4 3-7 7-7s7 3 7 7"/><path d="M12 12V8"/><path d="M9 5c0 1.5 1.3 3 3 3s3-1.5 3-3-1.3-2-3-2-3 .5-3 2Z"/></svg>
         </span>
-        <span>Casa da Márcia<small>Utilidades & Decoração</small></span>
+        <span>Casa e Decoração<small>Utilidades para o Lar</small></span>
       </a>
       <nav class="links" aria-label="Navegação principal">
         <a href="#espelhos">Espelhos</a>
         <a href="#colecoes">Coleções</a>
         <a href="#diferenciais">Diferenciais</a>
-        <a href="#sobre">A Márcia</a>
+        <a href="#sobre">A Loja</a>
         <a href="#depoimentos">Avaliações</a>
         <a href="#contato">Contato</a>
       </nav>
@@ -441,13 +434,13 @@
   <a href="#espelhos">Espelhos</a>
   <a href="#colecoes">Coleções</a>
   <a href="#diferenciais">Diferenciais</a>
-  <a href="#sobre">A Márcia</a>
+  <a href="#sobre">A Loja</a>
   <a href="#depoimentos">Avaliações</a>
   <a href="#contato">Contato</a>
   <a class="btn btn-solid mwa" href="#" target="_blank" rel="noopener">Fale no WhatsApp</a>
 </div>
 
-<!-- HERO — Animated Marquee Hero (21st.dev) adaptado à identidade Casa da Márcia -->
+<!-- HERO — Animated Marquee Hero (21st.dev) adaptado à identidade Casa e Decoração -->
 <section class="hero" id="topo">
   <div class="wrap hero-inner">
     <!-- tagline pill -->
@@ -522,7 +515,7 @@
     <div class="mirror-copy">
       <span class="eyebrow reveal">Destaque da loja</span>
       <h2 class="reveal" data-d="1">Espelhos a pronta entrega, sempre com valor bom</h2>
-      <p class="reveal" data-d="2">Quem já conhece a Casa da Márcia sabe: aqui tem espelho a pronta entrega, sem espera e sem encomenda. Do modelo clássico bisotado ao orgânico que virou tendência na decoração — é escolher, pedir e receber.</p>
+      <p class="reveal" data-d="2">Quem já conhece a Casa e Decoração sabe: aqui tem espelho a pronta entrega, sem espera e sem encomenda. Do modelo clássico bisotado ao orgânico que virou tendência na decoração — é escolher, pedir e receber.</p>
       <p class="reveal" data-d="2">E o melhor: os espelhos estão <strong>sempre com valor bom</strong>. Chama no WhatsApp e garanta o seu antes que acabe.</p>
       <div class="mirror-pills reveal" data-d="3">
         <span><i></i> Pronta entrega</span>
@@ -537,10 +530,10 @@
     </div>
     <div class="mirror-figs">
       <figure class="reveal" data-d="2">
-        <div class="arch"><img src="img/espelho1.jpeg" width="800" height="1000" alt="Espelho retangular bisotado no lavabo — pronta entrega Casa da Márcia" loading="lazy" decoding="async" /></div>
+        <div class="arch"><img src="img/espelho1.jpeg" width="800" height="1000" alt="Espelho retangular bisotado no lavabo — pronta entrega Casa e Decoração" loading="lazy" decoding="async" /></div>
       </figure>
       <figure class="reveal" data-d="3">
-        <div class="arch"><img src="img/espelho2.jpeg" width="800" height="1000" alt="Espelho orgânico de parede na sala — pronta entrega Casa da Márcia" loading="lazy" decoding="async" /></div>
+        <div class="arch"><img src="img/espelho2.jpeg" width="800" height="1000" alt="Espelho orgânico de parede na sala — pronta entrega Casa e Decoração" loading="lazy" decoding="async" /></div>
       </figure>
     </div>
   </div>
@@ -598,7 +591,7 @@
         </div>
       </a>
       <a class="ccard reveal" data-d="3" href="#contato">
-        <div class="arch"><img src="img/enxoval.jpeg" width="800" height="800" alt="Par de taças de cristal com borda dourada — Casa da Márcia" loading="lazy" decoding="async" /></div>
+        <div class="arch"><img src="img/enxoval.jpeg" width="800" height="800" alt="Par de taças de cristal com borda dourada — Casa e Decoração" loading="lazy" decoding="async" /></div>
         <div class="cinfo">
           <h3>Presentes & Enxoval</h3>
           <p>Conjuntos prontos para presentear</p>
@@ -624,7 +617,7 @@
       <div class="feat reveal" data-d="1">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z"/></svg></div>
         <h3>Curadoria de verdade</h3>
-        <p>A Márcia escolhe peça por peça. Só entra na loja o que ela colocaria na própria casa.</p>
+        <p>A gente escolhe peça por peça. Só entra na loja o que colocaríamos na própria casa.</p>
       </div>
       <div class="feat reveal" data-d="2">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
@@ -639,6 +632,7 @@
       <div class="feat reveal" data-d="4">
         <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v8H3z"/><path d="M16 10h3l2 2.5V15h-5z"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
         <h3>Entrega cuidadosa</h3>
+        <p>Cada peça sai embalada com capricho para chegar inteirinha na sua casa.</p>
       </div>
     </div>
   </div>
@@ -652,17 +646,17 @@
       <div class="seal"><div><b>+10</b><small>Anos de loja</small></div></div>
     </div>
     <div class="about-copy">
-      <span class="eyebrow reveal">Quem é a Márcia</span>
+      <span class="eyebrow reveal">Quem somos</span>
       <h2 class="reveal" data-d="1">Uma paixão por casa arrumada virou loja</h2>
-      <p class="reveal" data-d="2">A Casa da Márcia nasceu do gosto por deixar a casa bonita e receber bem. O que começou escolhendo peças de decoração e utilidades para a própria família se transformou numa loja conhecida pela variedade e pelo atendimento atencioso.</p>
-      <p class="reveal" data-d="2">Hoje a Márcia ajuda centenas de clientes a decorar, montar enxoval, presentear e renovar a casa — sempre com indicação honesta e aquele toque pessoal de quem ama o que vende.</p>
+      <p class="reveal" data-d="2">A Casa e Decoração nasceu do gosto por deixar a casa bonita e receber bem. O que começou escolhendo peças de decoração e utilidades para a própria família se transformou numa loja conhecida pela variedade e pelo atendimento atencioso.</p>
+      <p class="reveal" data-d="2">Hoje a gente ajuda centenas de clientes a decorar, montar enxoval, presentear e renovar a casa — sempre com indicação honesta e aquele toque pessoal de quem ama o que vende.</p>
       <ul class="about-list">
         <li class="reveal" data-d="3"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Utilidades e decoração para presente, enxoval e dia a dia</li>
         <li class="reveal" data-d="3"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Indicação personalizada por foto e vídeo</li>
         <li class="reveal" data-d="4"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Espelhos a pronta entrega sempre em promoção</li>
       </ul>
       <div style="margin-top:30px" class="reveal" data-d="4">
-        <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">Conversar com a Márcia</a>
+        <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">Falar com a loja</a>
       </div>
     </div>
   </div>
@@ -703,7 +697,7 @@
       </div>
       <div class="tcard reveal" data-d="2">
         <span class="stars">★★★★★</span>
-        <p>Montei todo o enxoval com ela. Variedade enorme e preço justo. Chegou tudo embaladinho, sem nenhuma peça quebrada.</p>
+        <p>Montei todo o enxoval aqui. Variedade enorme e preço justo. Chegou tudo embaladinho, sem nenhuma peça quebrada.</p>
         <div class="who"><span class="av" style="background:var(--navy-700)">R</span><div><b>Rafael e Bruna</b><span>Clientes desde 2021</span></div></div>
       </div>
       <div class="tcard reveal" data-d="3">
@@ -721,15 +715,15 @@
     <div class="contact-info">
       <span class="eyebrow reveal">Vamos conversar</span>
       <h2 class="reveal" data-d="1">Peça já a sua peça favorita</h2>
-      <p class="lead reveal" data-d="2">Manda uma mensagem que a Márcia te responde rapidinho com fotos, preços e formas de pagamento. Você também pode usar o formulário ao lado.</p>
+      <p class="lead reveal" data-d="2">Manda uma mensagem no WhatsApp que a gente te responde rapidinho com fotos, preços e formas de pagamento.</p>
       <ul class="info-list">
         <li class="reveal" data-d="2">
           <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg></span>
-          <div><b>WhatsApp</b><a class="waText" href="#" target="_blank" rel="noopener">(11) 9XXXX-XXXX</a></div>
+          <div><b>WhatsApp</b><a class="waText" href="#" target="_blank" rel="noopener">(11) 95064-3955</a></div>
         </li>
         <li class="reveal" data-d="3">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></span>
-          <div><b>Instagram</b><a href="#" target="_blank" rel="noopener">@casadamarcia</a></div>
+          <div><b>Instagram</b><a class="igLink" href="#" target="_blank" rel="noopener">Ver no Instagram</a></div>
         </li>
         <li class="reveal" data-d="3">
           <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -740,41 +734,12 @@
           <div><b>Atendimento</b><span>Seg a Sáb, 9h às 19h</span></div>
         </li>
       </ul>
-    </div>
-
-    <div class="form reveal" data-d="2">
-      <h3>Faça seu pedido ou tire dúvidas</h3>
-      <p class="sub">Preencha e a Márcia retorna o quanto antes.</p>
-      <!-- Troque a action pelo seu endpoint do Formspree -->
-      <form action="https://formspree.io/f/SEU_ID" method="POST">
-        <div class="field">
-          <label for="nome">Nome</label>
-          <input id="nome" name="nome" type="text" placeholder="Seu nome" required>
-        </div>
-        <div class="field">
-          <label for="tel">WhatsApp</label>
-          <input id="tel" name="telefone" type="tel" placeholder="(11) 90000-0000" required>
-        </div>
-        <div class="field">
-          <label for="interesse">O que você procura?</label>
-          <select id="interesse" name="interesse">
-            <option>Espelhos (pronta entrega)</option>
-            <option>Decoração & Florais</option>
-            <option>Utilidades para Casa</option>
-            <option>Mesa Posta</option>
-            <option>Cozinha & Panelas</option>
-            <option>Louças & Porcelanas</option>
-            <option>Presente / Enxoval</option>
-            <option>Ainda não sei, quero ajuda</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="msg">Mensagem</label>
-          <textarea id="msg" name="mensagem" placeholder="Conte o que você está procurando..."></textarea>
-        </div>
-        <button class="btn btn-blue" type="submit">Enviar pedido</button>
-        <p class="form-note">Resposta rápida no horário comercial.</p>
-      </form>
+      <div class="contact-cta reveal" data-d="4">
+        <a class="btn btn-blue heroWa" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg>
+          Fazer meu pedido no WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -786,12 +751,12 @@
       <div>
         <div class="brand">
           <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M5 19c0-4 3-7 7-7s7 3 7 7"/><path d="M12 12V8"/><path d="M9 5c0 1.5 1.3 3 3 3s3-1.5 3-3-1.3-2-3-2-3 .5-3 2Z"/></svg></span>
-          <span>Casa da Márcia<small>Utilidades & Decoração</small></span>
+          <span>Casa e Decoração<small>Utilidades para o Lar</small></span>
         </div>
         <p class="fdesc">Utilidades para casa e decoração para deixar o seu lar mais bonito — com espelhos a pronta entrega e sempre em promoção.</p>
         <div class="socials">
           <a class="waText" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.379-.875z"/></svg></a>
-          <a href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
+          <a class="igLink" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg></a>
         </div>
       </div>
       <div class="foot-col">
@@ -804,7 +769,7 @@
       </div>
       <div class="foot-col">
         <h4>A loja</h4>
-        <a href="#sobre">Sobre a Márcia</a>
+        <a href="#sobre">Sobre nós</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#depoimentos">Avaliações</a>
         <a href="#contato">Contato</a>
@@ -812,12 +777,12 @@
       <div class="foot-col">
         <h4>Atendimento</h4>
         <p>Seg a Sáb · 9h às 19h</p>
-        <a class="waText" href="#" target="_blank" rel="noopener">(11) 9XXXX-XXXX</a>
-        <a href="#" target="_blank" rel="noopener">@casadamarcia</a>
+        <a class="waText" href="#" target="_blank" rel="noopener">(11) 95064-3955</a>
+        <a class="igLink" href="#" target="_blank" rel="noopener">Instagram</a>
       </div>
     </div>
     <div class="foot-bot">
-      <span>© <span id="ano"></span> Casa da Márcia. Todos os direitos reservados.</span>
+      <span>© <span id="ano"></span> Casa e Decoração. Todos os direitos reservados.</span>
       <span>Feito com carinho · <a href="#topo">voltar ao topo ↑</a></span>
     </div>
   </div>
@@ -830,12 +795,15 @@
 <script>
 (function(){
   /* ====== CONFIGURE AQUI ====== */
-  var WHATSAPP = "5511999999999"; // DDI+DDD+numero, so digitos
-  var MSG = "Ola, Marcia! Vim pelo site e quero saber mais sobre os espelhos a pronta entrega e as promocoes.";
+  var LOJA     = "Casa e Decoracao";
+  var WHATSAPP = "5511950643955";                                   // DDI+DDD+numero, so digitos -> (11) 95064-3955
+  var INSTAGRAM = "https://www.instagram.com/reel/DaQlNzUsKl0/";    // troque pelo link do PERFIL quando tiver: https://www.instagram.com/SEU_USUARIO/
+  var MSG = "Ola! Vim pelo site da " + LOJA + " e quero saber mais sobre os produtos";
   /* ============================ */
 
   var waLink = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(MSG);
   document.querySelectorAll('.heroWa, .waText, #navWa, .mwa').forEach(function(a){ a.href = waLink; });
+  document.querySelectorAll('.igLink').forEach(function(a){ a.href = INSTAGRAM; });
   document.getElementById('ano').textContent = new Date().getFullYear();
 
   /* nav scroll */
