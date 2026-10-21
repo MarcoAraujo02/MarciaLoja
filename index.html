@@ -915,9 +915,10 @@
         a.style.setProperty('--i', i);
         a.target = '_blank';
         a.rel = 'noopener';
+        var linkFoto = new URL(f.url, location.origin).href; // link completo da foto para mandar no WhatsApp
         a.href = waBase
-          ? waBase + '?text=' + encodeURIComponent('Ola! Vi esta peca no site e quero saber mais: ' + f.url)
-          : f.url;
+          ? waBase + '?text=' + encodeURIComponent('Ola! Vi esta peca no site e quero saber mais: ' + linkFoto)
+          : linkFoto;
         var img = document.createElement('img');
         img.src = f.url;
         img.alt = 'Novidade SL decorações';
