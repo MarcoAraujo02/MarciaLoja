@@ -60,6 +60,7 @@
   .ph .rm:hover{background:var(--red);color:#fff}
   .ph .rm svg{width:18px;height:18px}
   .ph .dt{font-size:.75rem;color:var(--ink-soft);padding:8px 10px}
+  .ph .tag{position:absolute;top:10px;left:10px;background:rgba(12,43,78,.85);color:#fff;font-size:.66rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
   .empty{grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0}
   @media(max-width:480px){.grid{grid-template-columns:repeat(2,1fr)}.card{padding:18px}}
 </style>
@@ -80,7 +81,7 @@
 <!-- PAINEL -->
 <div class="wrap" id="telaPainel" hidden>
   <div class="top">
-    <h1>Fotos da loja <small>Adicione ou remova as fotos da seção “Novidades”</small></h1>
+    <h1>Fotos da loja <small>Estas são as fotos do carrossel do topo do site. Adicione novas ou tire as que não quiser mais.</small></h1>
     <button class="btn btn-ghost" id="btnSair">Sair</button>
   </div>
 
@@ -95,7 +96,7 @@
   </div>
 
   <div class="head2">
-    <h2>Fotos publicadas</h2>
+    <h2>Fotos no carrossel</h2>
     <span id="contador"></span>
   </div>
   <div class="grid" id="grid"></div>
@@ -164,7 +165,7 @@
     } catch(e){ grid.innerHTML = '<div class="empty">Não foi possível carregar as fotos.</div>'; return; }
 
     $('contador').textContent = fotos.length + (fotos.length === 1 ? ' foto' : ' fotos');
-    if (!fotos.length){ grid.innerHTML = '<div class="empty">Nenhuma foto ainda. Envie a primeira aí em cima.</div>'; return; }
+    if (!fotos.length){ grid.innerHTML = '<div class="empty">O carrossel está vazio e some do site até você enviar uma foto.</div>'; return; }
 
     grid.innerHTML = '';
     fotos.forEach(function(f){
@@ -173,23 +174,23 @@
       card.className = 'ph';
       card.innerHTML =
         '<img loading="lazy" alt="">' +
-        '<button class="rm" title="Remover foto" aria-label="Remover foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>' +
-        '<div class="dt"></div>';
+        '<button class="rm" title="Tirar do carrossel" aria-label="Tirar do carrossel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>' +
+        '<div class="dt"></div>' + (f.original ? '<span class="tag">Original</span>' : '');
       card.querySelector('img').src = f.url;
-      card.querySelector('.dt').textContent = 'Enviada em ' + d.toLocaleDateString('pt-BR');
-      card.querySelector('.rm').addEventListener('click', function(){ remover(f.url, card, this); });
+      card.querySelector('.dt').textContent = f.original ? 'Foto original do site' : 'Enviada em ' + d.toLocaleDateString('pt-BR');
+      card.querySelector('.rm').addEventListener('click', function(){ remover(f.pathname, card, this); });
       grid.appendChild(card);
     });
   }
 
-  async function remover(url, card, btn){
-    if (!confirm('Remover esta foto do site?')) return;
+  async function remover(pathname, card, btn){
+    if (!confirm('Tirar esta foto do carrossel?')) return;
     btn.disabled = true;
     try {
-      await api('DELETE', API + '?url=' + encodeURIComponent(url));
+      await api('DELETE', API + '?pathname=' + encodeURIComponent(pathname));
       card.remove();
       carregar();
-      msg($('msgUp'), 'Foto removida. Pode levar até 1 minuto para sumir do site.', 'ok');
+      msg($('msgUp'), 'Foto retirada. Pode levar até 1 minuto para sumir do site.', 'ok');
     } catch(e){
       btn.disabled = false;
       msg($('msgUp'), 'Não consegui remover: ' + e.message, 'err');

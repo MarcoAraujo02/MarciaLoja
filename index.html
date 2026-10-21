@@ -398,22 +398,9 @@
     .marquee-track{animation:none!important}
     .h-in,.hero-title .w{opacity:1!important;transform:none!important}
   }
-  /* ===== NOVIDADES (fotos enviadas pelo /admin) ===== */
-  [hidden]{display:none!important}
-  .novidades{background:var(--white)}
-  .nov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,22px)}
-  .nov-item{position:relative;display:block;border-radius:var(--r);overflow:hidden;background:var(--ice);
-    border:1px solid var(--line);box-shadow:var(--shadow-sm);opacity:0;transform:translateY(14px);
-    animation:heroUp .7s var(--ease) forwards;animation-delay:calc(var(--i,0)*.05s)}
-  .nov-item img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .7s var(--ease)}
-  .nov-item::after{content:"Pedir no WhatsApp";position:absolute;left:12px;right:12px;bottom:12px;
-    background:rgba(255,255,255,.95);color:var(--navy-800);font-size:.78rem;font-weight:500;text-align:center;
-    padding:9px 10px;border-radius:999px;opacity:0;transform:translateY(8px);transition:.3s var(--ease)}
-  .nov-item:hover img{transform:scale(1.05)}
-  .nov-item:hover::after{opacity:1;transform:none}
-  @media(max-width:980px){.nov-grid{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:640px){.nov-grid{grid-template-columns:repeat(2,1fr)}.nov-item::after{opacity:1;transform:none;font-size:.7rem;padding:7px 8px}}
-  @media(prefers-reduced-motion:reduce){.nov-item{opacity:1!important;transform:none!important}}
+  /* carrossel do topo: espera as fotos do admin antes de aparecer */
+  .hero-marquee-track{transition:opacity .5s var(--ease)}
+  .hero-marquee-track.mq-wait{opacity:0}
 </style>
 </head>
 <body>
@@ -431,7 +418,6 @@
       <nav class="links" aria-label="Navegação principal">
         <a href="#espelhos">Espelhos</a>
         <a href="#colecoes">Coleções</a>
-        <a href="#novidades">Novidades</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#sobre">A Loja</a>
         <a href="#depoimentos">Avaliações</a>
@@ -450,7 +436,6 @@
   <button class="mclose" id="mclose" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <a href="#espelhos">Espelhos</a>
   <a href="#colecoes">Coleções</a>
-  <a href="#novidades">Novidades</a>
   <a href="#diferenciais">Diferenciais</a>
   <a href="#sobre">A Loja</a>
   <a href="#depoimentos">Avaliações</a>
@@ -494,9 +479,10 @@
     </div>
   </div>
 
-  <!-- marquee de imagens (fotos reais da loja, já existentes no projeto) -->
+  <!-- marquee de imagens: a lista real vem de /api/photos (gerenciada em /admin.html);
+       as fotos abaixo só aparecem se a API estiver fora do ar -->
   <div class="hero-marquee" aria-hidden="true">
-   <div class="hero-marquee-track" id="heroMq">
+   <div class="hero-marquee-track mq-wait" id="heroMq">
   <!-- conjunto 1 -->
   <div class="hm-card"><img src="img/tardezinha.jpeg" width="1600" height="1600" alt="" fetchpriority="high" /></div>
   <div class="hm-card"><img src="img/plantas.jpeg" width="1200" height="1600" alt="" /></div>
@@ -624,19 +610,6 @@
     <div class="col-more reveal">
       <a class="btn btn-outline dark heroWa" href="#" target="_blank" rel="noopener">Pedir catálogo completo no WhatsApp</a>
     </div>
-  </div>
-</section>
-
-<!-- NOVIDADES (fotos gerenciadas em /admin) -->
-<section class="section novidades" id="novidades" hidden>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Acabou de chegar</span>
-      <div class="plate-divider"><i></i></div>
-      <h2>Novidades da loja</h2>
-      <p class="lead">Peças que chegaram agora. Gostou de alguma? Toque na foto e peça direto pelo WhatsApp.</p>
-    </div>
-    <div class="nov-grid" id="novGrid"></div>
   </div>
 </section>
 
@@ -864,22 +837,69 @@
 })();
 </script>
 <script>
-/* ===== Marquee de imagens da hero — motor JS (base: framer-motion x:[-100%,0%], linear, repeat Infinity) ===== */
+/* ===== Marquee de imagens da hero — motor JS (base: framer-motion x:[-100%,0%], linear, repeat Infinity)
+   As fotos vêm de /api/photos (adicionadas e retiradas pelo admin.html). ===== */
 (function(){
   var track = document.getElementById('heroMq');
   if(!track) return;
+  var faixa = track.parentNode;
 
   var SPEED = 42;           // px por segundo (equivale ao duration:40 da skill)
+  var MIN_CARTOES = 12;     // repete as fotos até ter pelo menos isso por volta, para não abrir buraco em tela larga
   var x = 0, half = 0;
 
   function measure(){
-    half = track.scrollWidth / 2; // largura de UM conjunto (o HTML já tem 2 cópias)
+    half = track.scrollWidth / 2; // largura de UM conjunto (o trilho sempre tem 2 cópias)
     if (-x >= half && half > 0) x = x % half;
   }
-  measure();
   window.addEventListener('resize', measure);
   window.addEventListener('load', measure);
 
+  function cartao(src, primeiro){
+    var d = document.createElement('div');
+    d.className = 'hm-card';
+    var img = document.createElement('img');
+    img.src = src;
+    img.alt = '';
+    img.decoding = 'async';
+    if (primeiro) img.setAttribute('fetchpriority', 'high');
+    d.appendChild(img);
+    return d;
+  }
+
+  function montar(urls){
+    var conjunto = [];
+    while (conjunto.length < Math.max(MIN_CARTOES, urls.length)) conjunto = conjunto.concat(urls);
+    var frag = document.createDocumentFragment();
+    for (var k = 0; k < 2; k++){
+      for (var i = 0; i < conjunto.length; i++) frag.appendChild(cartao(conjunto[i], k === 0 && i === 0));
+    }
+    track.innerHTML = '';
+    track.appendChild(frag);
+    x = 0;
+    measure();
+  }
+
+  var mostrado = false;
+  function mostrar(){
+    if (mostrado) return;
+    mostrado = true;
+    measure();
+    track.classList.remove('mq-wait');
+  }
+  var espera = setTimeout(mostrar, 2500); // se a API demorar, mostra as fotos padrão
+
+  fetch('/api/photos')
+    .then(function(r){ if (!r.ok) throw new Error('api'); return r.json(); })
+    .then(function(fotos){
+      var urls = (fotos || []).map(function(f){ return f.url; });
+      if (!urls.length){ faixa.style.display = 'none'; return; } // todas retiradas: esconde a faixa
+      montar(urls);
+    })
+    .catch(function(){ /* API fora do ar: fica com as fotos padrão do HTML */ })
+    .then(function(){ clearTimeout(espera); mostrar(); });
+
+  measure();
   var last = null;
   function tick(now){
     if(last === null) last = now;
@@ -894,42 +914,6 @@
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
-})();
-</script>
-<script>
-(function(){
-  var sec = document.getElementById('novidades');
-  var grid = document.getElementById('novGrid');
-  if (!sec || !grid) return;
-
-  var nav = document.getElementById('navWa');
-  var waBase = nav ? nav.href.split('?')[0] : '';
-
-  fetch('/api/photos')
-    .then(function(r){ return r.ok ? r.json() : []; })
-    .then(function(fotos){
-      if (!fotos || !fotos.length) return;
-      fotos.slice(0, 24).forEach(function(f, i){
-        var a = document.createElement('a');
-        a.className = 'nov-item';
-        a.style.setProperty('--i', i);
-        a.target = '_blank';
-        a.rel = 'noopener';
-        var linkFoto = new URL(f.url, location.origin).href; // link completo da foto para mandar no WhatsApp
-        a.href = waBase
-          ? waBase + '?text=' + encodeURIComponent('Ola! Vi esta peca no site e quero saber mais: ' + linkFoto)
-          : linkFoto;
-        var img = document.createElement('img');
-        img.src = f.url;
-        img.alt = 'Novidade SL decorações';
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        a.appendChild(img);
-        grid.appendChild(a);
-      });
-      sec.hidden = false;
-    })
-    .catch(function(){ /* sem fotos ou API fora do ar: a seção continua escondida */ });
 })();
 </script>
 </body>
