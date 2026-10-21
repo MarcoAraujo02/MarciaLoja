@@ -398,6 +398,22 @@
     .marquee-track{animation:none!important}
     .h-in,.hero-title .w{opacity:1!important;transform:none!important}
   }
+  /* ===== NOVIDADES (fotos enviadas pelo /admin) ===== */
+  [hidden]{display:none!important}
+  .novidades{background:var(--white)}
+  .nov-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,22px)}
+  .nov-item{position:relative;display:block;border-radius:var(--r);overflow:hidden;background:var(--ice);
+    border:1px solid var(--line);box-shadow:var(--shadow-sm);opacity:0;transform:translateY(14px);
+    animation:heroUp .7s var(--ease) forwards;animation-delay:calc(var(--i,0)*.05s)}
+  .nov-item img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .7s var(--ease)}
+  .nov-item::after{content:"Pedir no WhatsApp";position:absolute;left:12px;right:12px;bottom:12px;
+    background:rgba(255,255,255,.95);color:var(--navy-800);font-size:.78rem;font-weight:500;text-align:center;
+    padding:9px 10px;border-radius:999px;opacity:0;transform:translateY(8px);transition:.3s var(--ease)}
+  .nov-item:hover img{transform:scale(1.05)}
+  .nov-item:hover::after{opacity:1;transform:none}
+  @media(max-width:980px){.nov-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:640px){.nov-grid{grid-template-columns:repeat(2,1fr)}.nov-item::after{opacity:1;transform:none;font-size:.7rem;padding:7px 8px}}
+  @media(prefers-reduced-motion:reduce){.nov-item{opacity:1!important;transform:none!important}}
 </style>
 </head>
 <body>
@@ -415,6 +431,7 @@
       <nav class="links" aria-label="Navegação principal">
         <a href="#espelhos">Espelhos</a>
         <a href="#colecoes">Coleções</a>
+        <a href="#novidades">Novidades</a>
         <a href="#diferenciais">Diferenciais</a>
         <a href="#sobre">A Loja</a>
         <a href="#depoimentos">Avaliações</a>
@@ -433,6 +450,7 @@
   <button class="mclose" id="mclose" aria-label="Fechar menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   <a href="#espelhos">Espelhos</a>
   <a href="#colecoes">Coleções</a>
+  <a href="#novidades">Novidades</a>
   <a href="#diferenciais">Diferenciais</a>
   <a href="#sobre">A Loja</a>
   <a href="#depoimentos">Avaliações</a>
@@ -606,6 +624,19 @@
     <div class="col-more reveal">
       <a class="btn btn-outline dark heroWa" href="#" target="_blank" rel="noopener">Pedir catálogo completo no WhatsApp</a>
     </div>
+  </div>
+</section>
+
+<!-- NOVIDADES (fotos gerenciadas em /admin) -->
+<section class="section novidades" id="novidades" hidden>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Acabou de chegar</span>
+      <div class="plate-divider"><i></i></div>
+      <h2>Novidades da loja</h2>
+      <p class="lead">Peças que chegaram agora. Gostou de alguma? Toque na foto e peça direto pelo WhatsApp.</p>
+    </div>
+    <div class="nov-grid" id="novGrid"></div>
   </div>
 </section>
 
@@ -863,6 +894,41 @@
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
+})();
+</script>
+<script>
+(function(){
+  var sec = document.getElementById('novidades');
+  var grid = document.getElementById('novGrid');
+  if (!sec || !grid) return;
+
+  var nav = document.getElementById('navWa');
+  var waBase = nav ? nav.href.split('?')[0] : '';
+
+  fetch('/api/photos')
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(fotos){
+      if (!fotos || !fotos.length) return;
+      fotos.slice(0, 24).forEach(function(f, i){
+        var a = document.createElement('a');
+        a.className = 'nov-item';
+        a.style.setProperty('--i', i);
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.href = waBase
+          ? waBase + '?text=' + encodeURIComponent('Ola! Vi esta peca no site e quero saber mais: ' + f.url)
+          : f.url;
+        var img = document.createElement('img');
+        img.src = f.url;
+        img.alt = 'Novidade SL decorações';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        a.appendChild(img);
+        grid.appendChild(a);
+      });
+      sec.hidden = false;
+    })
+    .catch(function(){ /* sem fotos ou API fora do ar: a seção continua escondida */ });
 })();
 </script>
 </body>

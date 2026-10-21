@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Fotos da Loja · Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0C2B4E;--navy-700:#123A66;--blue:#2F6DB4;--sky:#BFD9F2;--ice:#F2F7FC;
+    --ink:#132A44;--ink-soft:#4A6079;--line:#DCE8F4;--red:#C0392B;
+    --shadow:0 10px 30px rgba(12,43,78,.10);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Outfit',system-ui,sans-serif;font-weight:300;color:var(--ink);background:var(--ice);min-height:100vh;-webkit-font-smoothing:antialiased}
+  h1,h2{font-family:'Marcellus',Georgia,serif;font-weight:400;margin:0}
+  [hidden]{display:none!important}
+  .wrap{max-width:1000px;margin:0 auto;padding:28px 16px 80px}
+  .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+  .top h1{font-size:1.6rem;color:var(--navy)}
+  .top small{display:block;font-size:.8rem;color:var(--ink-soft);font-family:'Outfit',sans-serif}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:12px 24px;border-radius:999px;border:1px solid transparent;
+    font:500 .95rem 'Outfit',sans-serif;cursor:pointer;transition:background .2s,transform .15s}
+  .btn:active{transform:scale(.97)}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover:not(:disabled){background:var(--navy-700)}
+  .btn-ghost{background:transparent;border-color:var(--line);color:var(--navy)}
+  .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+  input[type=password]{width:100%;min-height:48px;padding:12px 16px;border:1px solid var(--line);border-radius:12px;font:400 1rem 'Outfit',sans-serif;color:var(--ink);margin:10px 0 16px}
+  input[type=password]:focus{outline:2px solid var(--blue);outline-offset:1px}
+  /* login */
+  .login{max-width:380px;margin:12vh auto 0;text-align:center}
+  .login h1{font-size:1.7rem;color:var(--navy);margin-bottom:6px}
+  .login p{color:var(--ink-soft);font-size:.92rem}
+  .login .btn{width:100%}
+  /* upload */
+  .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;
+    border:2px dashed var(--sky);border-radius:16px;padding:34px 16px;background:var(--ice);cursor:pointer;transition:border-color .2s,background .2s}
+  .drop:hover,.drop.over{border-color:var(--blue);background:#E8F1FB}
+  .drop svg{width:40px;height:40px;color:var(--blue)}
+  .drop b{font-weight:600;color:var(--navy)}
+  .drop span{font-size:.85rem;color:var(--ink-soft)}
+  .msg{margin-top:14px;font-size:.9rem;min-height:1.3em}
+  .msg.err{color:var(--red)}
+  .msg.ok{color:#1E7B4A}
+  /* grid */
+  .head2{display:flex;align-items:baseline;justify-content:space-between;margin:34px 0 14px}
+  .head2 h2{font-size:1.3rem;color:var(--navy)}
+  .head2 span{font-size:.85rem;color:var(--ink-soft)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px}
+  .ph{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(12,43,78,.06)}
+  .ph img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;background:var(--ice)}
+  .ph .rm{position:absolute;top:8px;right:8px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;
+    background:rgba(255,255,255,.95);color:var(--red);display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.18)}
+  .ph .rm:hover{background:var(--red);color:#fff}
+  .ph .rm svg{width:18px;height:18px}
+  .ph .dt{font-size:.75rem;color:var(--ink-soft);padding:8px 10px}
+  .empty{grid-column:1/-1;text-align:center;color:var(--ink-soft);padding:40px 0}
+  @media(max-width:480px){.grid{grid-template-columns:repeat(2,1fr)}.card{padding:18px}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="wrap" id="telaLogin">
+  <form class="card login" id="formLogin">
+    <h1>Fotos da loja</h1>
+    <p>Área restrita da SL decorações</p>
+    <input type="password" id="senha" placeholder="Senha" autocomplete="current-password" required />
+    <button class="btn btn-blue" type="submit" id="btnEntrar">Entrar</button>
+    <div class="msg err" id="msgLogin"></div>
+  </form>
+</div>
+
+<!-- PAINEL -->
+<div class="wrap" id="telaPainel" hidden>
+  <div class="top">
+    <h1>Fotos da loja <small>Adicione ou remova as fotos da seção “Novidades”</small></h1>
+    <button class="btn btn-ghost" id="btnSair">Sair</button>
+  </div>
+
+  <div class="card">
+    <label class="drop" id="drop">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+      <b>Toque para escolher fotos</b>
+      <span>ou arraste para cá · pode escolher várias de uma vez</span>
+      <input type="file" id="arquivos" accept="image/*" multiple hidden />
+    </label>
+    <div class="msg" id="msgUp"></div>
+  </div>
+
+  <div class="head2">
+    <h2>Fotos publicadas</h2>
+    <span id="contador"></span>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<script>
+(function(){
+  var API = '/api/photos';
+  var KEY = 'sl_admin_pw';
+  var senha = '';
+  try { senha = sessionStorage.getItem(KEY) || ''; } catch(e){}
+
+  var $ = function(id){ return document.getElementById(id); };
+
+  function headers(extra){
+    var h = { 'x-admin-password': senha };
+    for (var k in extra) h[k] = extra[k];
+    return h;
+  }
+  function msg(el, texto, tipo){ el.textContent = texto || ''; el.className = 'msg' + (tipo ? ' ' + tipo : ''); }
+
+  async function api(method, url, body){
+    var opts = { method: method, headers: headers(body ? {'Content-Type':'application/json'} : {}) };
+    if (body) opts.body = JSON.stringify(body);
+    var r = await fetch(url, opts);
+    var data = {};
+    try { data = await r.json(); } catch(e){}
+    if (!r.ok) { var err = new Error(data.erro || ('Erro ' + r.status)); err.status = r.status; throw err; }
+    return data;
+  }
+
+  /* ---------- login ---------- */
+  async function entrar(){
+    await api('POST', API, { check: true });
+    try { sessionStorage.setItem(KEY, senha); } catch(e){}
+    $('telaLogin').hidden = true;
+    $('telaPainel').hidden = false;
+    carregar();
+  }
+
+  $('formLogin').addEventListener('submit', async function(ev){
+    ev.preventDefault();
+    senha = $('senha').value;
+    $('btnEntrar').disabled = true;
+    msg($('msgLogin'), '');
+    try { await entrar(); }
+    catch(e){ msg($('msgLogin'), e.status === 401 ? 'Senha incorreta.' : e.message, 'err'); }
+    finally { $('btnEntrar').disabled = false; }
+  });
+
+  $('btnSair').addEventListener('click', function(){
+    try { sessionStorage.removeItem(KEY); } catch(e){}
+    senha = '';
+    location.reload();
+  });
+
+  if (senha) entrar().catch(function(){ try { sessionStorage.removeItem(KEY); } catch(e){} });
+
+  /* ---------- listar ---------- */
+  async function carregar(){
+    var grid = $('grid');
+    var fotos = [];
+    try {
+      var r = await fetch(API + '?t=' + Date.now()); // ?t= ignora o cache para ver na hora
+      fotos = await r.json();
+    } catch(e){ grid.innerHTML = '<div class="empty">Não foi possível carregar as fotos.</div>'; return; }
+
+    $('contador').textContent = fotos.length + (fotos.length === 1 ? ' foto' : ' fotos');
+    if (!fotos.length){ grid.innerHTML = '<div class="empty">Nenhuma foto ainda. Envie a primeira aí em cima.</div>'; return; }
+
+    grid.innerHTML = '';
+    fotos.forEach(function(f){
+      var d = new Date(f.uploadedAt);
+      var card = document.createElement('div');
+      card.className = 'ph';
+      card.innerHTML =
+        '<img loading="lazy" alt="">' +
+        '<button class="rm" title="Remover foto" aria-label="Remover foto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg></button>' +
+        '<div class="dt"></div>';
+      card.querySelector('img').src = f.url;
+      card.querySelector('.dt').textContent = 'Enviada em ' + d.toLocaleDateString('pt-BR');
+      card.querySelector('.rm').addEventListener('click', function(){ remover(f.url, card, this); });
+      grid.appendChild(card);
+    });
+  }
+
+  async function remover(url, card, btn){
+    if (!confirm('Remover esta foto do site?')) return;
+    btn.disabled = true;
+    try {
+      await api('DELETE', API + '?url=' + encodeURIComponent(url));
+      card.remove();
+      carregar();
+      msg($('msgUp'), 'Foto removida. Pode levar até 1 minuto para sumir do site.', 'ok');
+    } catch(e){
+      btn.disabled = false;
+      msg($('msgUp'), 'Não consegui remover: ' + e.message, 'err');
+    }
+  }
+
+  /* ---------- upload (com compressão no navegador) ---------- */
+  var MAX_LADO = 1600, QUALIDADE = 0.82;
+
+  async function carregarImagem(file){
+    if ('createImageBitmap' in window){
+      try { return await createImageBitmap(file, { imageOrientation: 'from-image' }); } catch(e){}
+    }
+    return await new Promise(function(ok, falha){
+      var img = new Image();
+      img.onload = function(){ ok(img); };
+      img.onerror = function(){ falha(new Error('Formato de imagem não suportado')); };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+
+  async function comprimir(file){
+    var img = await carregarImagem(file);
+    var w = img.width, h = img.height;
+    var escala = Math.min(1, MAX_LADO / Math.max(w, h));
+    var cw = Math.round(w * escala), ch = Math.round(h * escala);
+    var c = document.createElement('canvas');
+    c.width = cw; c.height = ch;
+    var ctx = c.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, cw, ch); // fundo branco para PNG transparente
+    ctx.drawImage(img, 0, 0, cw, ch);
+    var dataUrl = c.toDataURL('image/jpeg', QUALIDADE);
+    return dataUrl.split(',')[1]; // só o base64
+  }
+
+  async function enviar(files){
+    files = Array.prototype.filter.call(files, function(f){ return /^image\//.test(f.type) || /\.(heic|heif)$/i.test(f.name); });
+    if (!files.length) return;
+    var el = $('msgUp'), ok = 0, falhas = 0;
+    for (var i = 0; i < files.length; i++){
+      msg(el, 'Enviando ' + (i + 1) + ' de ' + files.length + '…');
+      try {
+        var b64 = await comprimir(files[i]);
+        await api('POST', API, { contentType: 'image/jpeg', data: b64 });
+        ok++;
+      } catch(e){
+        falhas++;
+        if (e.status === 401){ msg(el, 'Sessão expirada. Entre de novo.', 'err'); return; }
+      }
+    }
+    msg(el,
+      ok + (ok === 1 ? ' foto enviada' : ' fotos enviadas') + (falhas ? ' · ' + falhas + ' falharam' : '') +
+      '. Aparecem no site em até 1 minuto.', falhas ? 'err' : 'ok');
+    $('arquivos').value = '';
+    carregar();
+  }
+
+  $('arquivos').addEventListener('change', function(){ enviar(this.files); });
+
+  var drop = $('drop');
+  ['dragenter','dragover'].forEach(function(t){ drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.add('over'); }); });
+  ['dragleave','drop'].forEach(function(t){ drop.addEventListener(t, function(e){ e.preventDefault(); drop.classList.remove('over'); }); });
+  drop.addEventListener('drop', function(e){ enviar(e.dataTransfer.files); });
+})();
+</script>
+</body>
+</html>
